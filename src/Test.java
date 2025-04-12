@@ -28,13 +28,22 @@ kullanılabilmelidir. Oyunun ilerleyişi buradan takip edilmelidir.*/
     public static void main(String[] args) {
 
         Test test1 = new Test();  // Test sınıfı burada zaten sporcuları tanımlıyor
-        Test test2 = new Test();
+
 
 
         Bilgisayar bilgisayar = new Bilgisayar(2, "Yapay Zeka", 0);
-        bilgisayar.kartlariAta(test1); // Kartları dağıt
-        bilgisayar.kartSec(); // Bilgisayar kart seçer
+        bilgisayar.kartlariAta(test1); // oyuncu sınıfının fnksiyonu
         bilgisayar.kartlariYazdir();
+        System.out.println("/////////////////////////////////////////////////////////");
+        System.out.println("Kullanıcının Kartları");
+        Kullanici kullanici = new Kullanici(1,"Kubra",0);
+        kullanici.kartlariAta(test1); // oyuncu sınıfının fnksiyonu
+        kullanici.kartlariYazdir();
+      //  bilgisayar.kartSec(); // bilgisayar sınıfının fonksiyonu
+        Sporcu bilgisayarKarti = bilgisayar.kartSec();
+        Sporcu kullaniciKarti = kullanici.kartSec();
+
+
 
 
     }

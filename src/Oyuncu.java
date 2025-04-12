@@ -22,6 +22,7 @@ public abstract class Oyuncu {
     //skorgoster nasıl kullanılır burda????
     //kartSec() fonksiyonu yazılmalı fakat bu sınıf bilgisayar ve kullanıcı için farklı durumlarda
     //çalışacağı unutulmamalıdır.
+    public static ArrayList<Sporcu> kullanilanKartlar = new ArrayList<>();
     public void kartlariAta(Test test) {
         ArrayList<Sporcu> futbolcular = new ArrayList<>();
         futbolcular.add(test.LionelMessi);
@@ -46,35 +47,52 @@ public abstract class Oyuncu {
         Collections.shuffle(futbolcular);
         Collections.shuffle(basketbolcular);
 
-        for (int i = 0; i < 4; i++) {
-            kartListesi[i] = futbolcular.get(i);
-            kartListesi[i + 4] = basketbolcular.get(i);
+
+// bu iki for iki oyuncuya aynı kartları vermememizi sağlıyor.
+        int index = 0;
+        for (Sporcu kart : futbolcular) {
+            if (!kullanilanKartlar.contains(kart)) {
+                kartListesi[index++] = kart;
+                kullanilanKartlar.add(kart);
+            }
+            if (index == 4) break;
         }
+        for (Sporcu kart : basketbolcular) {
+            if (!kullanilanKartlar.contains(kart)) {
+                kartListesi[index++] = kart;
+                kullanilanKartlar.add(kart);
+            }
+            if (index == 8) break;
+        }
+// bu iki for iki oyuncuya aynı kartları vermememizi sağlıyor.
     }
 
 
     // Kartları yazdır
     public void kartlariYazdir() {
-        for (Sporcu s : kartListesi) {
-            // Futbolcu veya Basketbolcu olduğuna bakarak bilgileri yazdır
+        for (int i = 0; i < kartListesi.length; i++) {
+            Sporcu s = kartListesi[i];
+            if (s == null) {
+                System.out.println((i + 1) + ". --- (Kullanıldı)");
+                continue;
+            }
+
             if (s instanceof Futbolcu) {
-                Futbolcu futbolcu = (Futbolcu) s;
-                System.out.println("Futbolcu: " + futbolcu.getSporcuIsim() + " - Takım: " + futbolcu.getSporcuTakim() +
-                        " - Penaltı: " + futbolcu.getPenalti() + " - Serbest Atış: " + futbolcu.getSerbestAtis() +
-                        " - Kaleci Karşısı: " + futbolcu.getKaleciKarsiKarsiya());
+                Futbolcu f = (Futbolcu) s;
+                System.out.println((i + 1) + ". Futbolcu: " + f.getSporcuIsim() + " - Takım: " + f.getSporcuTakim() +
+                        " - Penaltı: " + f.getPenalti() + " - Serbest Atış: " + f.getSerbestAtis() +
+                        " - Kaleci Karşısı: " + f.getKaleciKarsiKarsiya());
             } else if (s instanceof Basketbolcu) {
-                Basketbolcu basketbolcu = (Basketbolcu) s;
-                System.out.println("Basketbolcu: " + basketbolcu.getSporcuIsim() + " - Takım: " + basketbolcu.getSporcuTakim() +
-                        " - İkilik " + basketbolcu.getIkilik() + " Üçlük: " + basketbolcu.getUcluk() +
-                        " Serbest Atış " + basketbolcu.getSerbestAtis());
+                Basketbolcu b = (Basketbolcu) s;
+                System.out.println((i + 1) + ". Basketbolcu: " + b.getSporcuIsim() + " - Takım: " + b.getSporcuTakim() +
+                        " - İkilik: " + b.getIkilik() + " - Üçlük: " + b.getUcluk() +
+                        " - Serbest Atış: " + b.getSerbestAtis());
+
             }
         }
     }
 
-    public void kartSec()
-    {
-
-    }
+    public abstract Sporcu kartSec();
 
 
 }

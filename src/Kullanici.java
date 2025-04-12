@@ -10,15 +10,10 @@ public class Kullanici extends Oyuncu{
     }
 
     @Override
-    public void kartSec() {
+    public Sporcu kartSec() {
+
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\nElinizdeki kartlar:");
-        for (int i = 0; i < kartListesi.length; i++) {
-            System.out.println((i + 1) + ". " + kartListesi[i].getSporcuIsim() + " (" + kartListesi[i].getSporcuTakim() + ")");
-        }
-
-        System.out.print("Ortaya koymak istediğiniz kartın numarasını girin (1-8): ");
+        System.out.print("Seçtiğiniz  kartın numarasını girin (1-8): ");
         int secim = scanner.nextInt();
 
         // Giriş kontrolü
@@ -26,13 +21,22 @@ public class Kullanici extends Oyuncu{
             System.out.print("Geçersiz seçim. Lütfen 1 ile 8 arasında geçerli bir numara girin: ");
             secim = scanner.nextInt();
         }
-
         Sporcu secilenKart = kartListesi[secim - 1];
+        // Seçilen kartı türüne göre detaylı yazdır
+        System.out.println("\nSeçilen kart bilgileri:");
+        if (secilenKart instanceof Futbolcu) {
+            Futbolcu f = (Futbolcu) secilenKart;
+            System.out.println("Futbolcu: " + f.getSporcuIsim()+ " Takım: " + f.getSporcuTakim() + " Penaltı: " + f.getPenalti()+ " Serbest Atış: " + f.getSerbestAtis() + " Kaleciyle Karşı Karşıya: " + f.getKaleciKarsiKarsiya());
+           ;
+        } else if (secilenKart instanceof Basketbolcu) {
+            Basketbolcu b = (Basketbolcu) secilenKart;
+            System.out.println("Basketbolcu: " + b.getSporcuIsim() +" Takım: " + b.getSporcuTakim()+ " İkilik: " + b.getIkilik() + " Üçlük: " + b.getUcluk()+" Serbest Atış: " + b.getSerbestAtis());
+        }
+        // Seçilen kartı elden çıkar (kullanıldı işareti için null yap)
+        kartListesi[secim - 1] = null;
+        return secilenKart;//"Ben bu kartı seçtim, bu kartı dışarıya (çağıran metoda) gönderiyorum."
+    }// kartsec fonksiyonunun bitişi
 
-        // Seçilen kartı göster ve diziden sil (null yaparak)
-        System.out.println("Seçilen kart: " + secilenKart.getSporcuIsim() + " - " + secilenKart.getSporcuTakim());
-        kartListesi[secim - 1] = null;  // Kart artık elde değil
-    }
 
 
 
