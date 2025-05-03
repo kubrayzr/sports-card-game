@@ -13,7 +13,7 @@ public class Kullanici extends Oyuncu{
     public Sporcu kartSec() {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Seçtiğiniz  kartın numarasını girin (1-8): ");
+        System.out.print("\n \n Seçtiğiniz  kartı girin (1-8): ");
         int secim = scanner.nextInt();
 
         // Giriş kontrolü

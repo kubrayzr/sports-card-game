@@ -43,7 +43,7 @@ public class Bilgisayar extends Oyuncu {
         Sporcu secilenKart = kartListesi[secilenIndex];
 
         // Kart detaylarını yazdır
-        System.out.println("----- Bilgisayar Kart Seçti -----");
+        System.out.println(" \n ----- Bilgisayar Kart Seçti -----");
         if (secilenKart instanceof Futbolcu) {
             Futbolcu f = (Futbolcu) secilenKart;
             System.out.println("Futbolcu: " + f.getSporcuIsim() +

@@ -94,7 +94,23 @@ public abstract class Oyuncu {
 
     public abstract Sporcu kartSec();
 
+    public int getSkor()
+/*Bu metod bir değer döndürür — yani çağrıldığında sana skor değişkeninin değerini verir.
+ * int burada metodun geri dönüş tipidir. Yani bu metod çağrıldığında bir int (tam sayı) değeri döner.
+ */
+    {
+        return skor;
+    }
 
+    public void setSkor(int skor)/*Bu metodlar bir değer döndürmez. Yani sadece işlem yaparlar ama sonuç olarak bir şey geri vermezler.
+    void, "bu metod bir şey döndürmüyor" anlamına gelir.*/
+    {
+        this.skor = skor;
+    }
+
+    public void addSkor(int puan) {
+        this.skor += puan;
+    }
 }
 
 

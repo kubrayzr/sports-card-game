@@ -7,7 +7,8 @@ public class Basketbolcu extends Sporcu {
     private boolean kartKullanildiMi;
 
     public Basketbolcu()
-    {}
+    {} // Parametresiz yapıcı metot (hiçbir şey yapmaz, ama gerekli olabilir).
+
 
     public Basketbolcu(int ikilik, int ucluk, int serbestAtis,  boolean kartKullanildiMi , String sporcuIsim, String sporcuTakim, int sporcuId ) {
         super(sporcuIsim, sporcuTakim, sporcuId);
@@ -58,3 +59,9 @@ public class Basketbolcu extends Sporcu {
 
 
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
